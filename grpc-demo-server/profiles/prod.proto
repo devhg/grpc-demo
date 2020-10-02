@@ -13,10 +13,21 @@ message ProdResponse {
   int32 prod_stock = 1; // 库存
 }
 
+message QuerySize {
+  int32 size = 1; // 页尺寸
+}
+
+message ProdResponseList {
+  //repeated是一个修饰符，返回字段可以重复很多很多次包括0次，可以看做一个切片|数组
+  repeated ProdResponse prods = 1;
+}
+
 service ProdService {
   rpc getProdService(ProdRequest) returns (ProdResponse) {
     option (google.api.http) = {
       get: "/v1/prod/{prod_id}"
     };
   }
+
+  rpc getProdStocks(QuerySize) returns (ProdResponseList);
 }

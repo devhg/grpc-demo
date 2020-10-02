@@ -43,10 +43,15 @@ func main() {
 
 	client := service.NewProdServiceClient(conn)
 	prodResponse, err := client.GetProdService(context.Background(), &service.ProdRequest{ProdId: 12})
+	stocks, err := client.GetProdStocks(context.Background(), &service.QuerySize{Size: 3})
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// 普通类型
 	fmt.Println(prodResponse)
+	// 数组类型
+	fmt.Println("stocks", stocks.Prods)
+	fmt.Println("stocks", stocks.Prods[2].ProdStock)
 }
