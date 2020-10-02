@@ -5,8 +5,16 @@ package service;
 
 import "google/api/annotations.proto";
 
+// 枚举类型
+enum ProdAreas {
+  A = 0;
+  B = 1;
+  C = 2;
+}
+
 message ProdRequest {
   int32 prod_id = 1; // 传入id
+  ProdAreas prod_area = 2; // 传入区域
 }
 
 message ProdResponse {

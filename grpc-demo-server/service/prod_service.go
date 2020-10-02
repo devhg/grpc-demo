@@ -15,6 +15,14 @@ func (p *ProdService) GetProdStocks(context.Context, *QuerySize) (*ProdResponseL
 	return &ProdResponseList{Prods: prods}, nil
 }
 
-func (p *ProdService) GetProdService(context.Context, *ProdRequest) (*ProdResponse, error) {
-	return &ProdResponse{ProdStock: 25}, nil
+func (p *ProdService) GetProdService(ctx context.Context, req *ProdRequest) (*ProdResponse, error) {
+	stock := 10
+	if req.ProdArea == ProdAreas_A {
+		stock = 11
+	} else if req.ProdArea == ProdAreas_B {
+		stock = 22
+	} else if req.ProdArea == ProdAreas_C {
+		stock = 33
+	}
+	return &ProdResponse{ProdStock: int32(stock)}, nil
 }
