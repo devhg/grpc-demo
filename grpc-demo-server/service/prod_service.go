@@ -5,6 +5,11 @@ import "golang.org/x/net/context"
 type ProdService struct {
 }
 
+func (p *ProdService) GetProdInfo(ctx context.Context, req *ProdRequest) (*ProdModel, error) {
+	ret := &ProdModel{ProdId: req.ProdId, ProdName: "苹果", ProdPrice: 5499.99}
+	return ret, nil
+}
+
 func (p *ProdService) GetProdStocks(context.Context, *QuerySize) (*ProdResponseList, error) {
 	prods := []*ProdResponse{
 		&ProdResponse{ProdStock: 31},

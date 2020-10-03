@@ -46,6 +46,8 @@ func main() {
 		&service.ProdRequest{ProdId: 12, ProdArea: 1})
 	stocks, err := client.GetProdStocks(context.Background(), &service.QuerySize{Size: 3})
 
+	prodInfo, err := client.GetProdInfo(context.Background(), &service.ProdRequest{ProdId: 1222})
+
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -55,4 +57,6 @@ func main() {
 	// 数组类型
 	fmt.Println("stocks", stocks.Prods)
 	fmt.Println("stocks", stocks.Prods[2].ProdStock)
+
+	fmt.Println(prodInfo)
 }

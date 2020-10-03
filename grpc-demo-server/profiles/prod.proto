@@ -3,7 +3,10 @@ syntax = "proto3";
 option go_package = "./service";
 package service;
 
+//https://github.com/jvolkman/intellij-protobuf-editor/issues/13#issuecomment-626325662
+//解决引入问题
 import "google/api/annotations.proto";
+import "models.proto";
 
 // 枚举类型
 enum ProdAreas {
@@ -38,4 +41,11 @@ service ProdService {
   }
 
   rpc getProdStocks(QuerySize) returns (ProdResponseList);
+
+  // 测试引入外部的.proto
+  rpc getProdInfo(ProdRequest) returns (ProdModel) {
+    option (google.api.http) = {
+      get: "/v1/prodInfo/{prod_id}"
+    };
+  };
 }

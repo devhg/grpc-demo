@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = "./service";
+package service;
+
+//商品类型
+message ProdModel {
+  int32 prod_id = 1;
+  string prod_name = 2;
+  float prod_price = 3;
+}
