@@ -21,7 +21,17 @@ func main() {
 	// Note: Make sure the gRPC server is running properly and accessible
 	mux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithTransportCredentials(helper.GetClientCreds())}
+
+	// 商品服务
 	err := service.RegisterProdServiceHandlerFromEndpoint(ctx, mux,
+		"localhost:9305", opts) // 此地址对应grpc的端口
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// 订单服务
+	err = service.RegisterOrderServiceHandlerFromEndpoint(ctx, mux,
 		"localhost:9305", opts) // 此地址对应grpc的端口
 	if err != nil {
 		log.Fatal(err)

@@ -11,7 +11,8 @@ func main() {
 
 	rpcServer := grpc.NewServer(grpc.Creds(helper.GetServerCreds()))
 
-	service.RegisterProdServiceServer(rpcServer, new(service.ProdService))
+	service.RegisterProdServiceServer(rpcServer, new(service.ProdService))   // 商品服务
+	service.RegisterOrderServiceServer(rpcServer, new(service.OrderService)) // 订单服务
 
 	// 使用tcp
 	listen, _ := net.Listen("tcp", ":9305")
