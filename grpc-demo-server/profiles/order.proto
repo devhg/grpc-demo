@@ -11,10 +11,15 @@ message OrderResponse {
   string message = 2;
 }
 
+message OrderRequest {
+  OrderMain order_main = 1;
+}
+
 service OrderService {
-  rpc NewOrder(OrderMain) returns (OrderResponse) {
+  rpc NewOrder(OrderRequest) returns (OrderResponse) {
     option (google.api.http) = {
-      get : "/v1/order/{user_id}"
+      post : "/v1/orders",
+      body : "order_main"
     };
   }
 }
