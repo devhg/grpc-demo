@@ -235,6 +235,62 @@ func (x *OrderDetail) GetDetailId() int32 {
 	return 0
 }
 
+//用户积分
+type UserScore struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId int32 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Score  int32 `protobuf:"varint,2,opt,name=score,proto3" json:"score,omitempty"`
+}
+
+func (x *UserScore) Reset() {
+	*x = UserScore{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_models_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UserScore) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserScore) ProtoMessage() {}
+
+func (x *UserScore) ProtoReflect() protoreflect.Message {
+	mi := &file_models_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserScore.ProtoReflect.Descriptor instead.
+func (*UserScore) Descriptor() ([]byte, []int) {
+	return file_models_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *UserScore) GetUserId() int32 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *UserScore) GetScore() int32 {
+	if x != nil {
+		return x.Score
+	}
+	return 0
+}
+
 var File_models_proto protoreflect.FileDescriptor
 
 var file_models_proto_rawDesc = []byte{
@@ -269,8 +325,12 @@ var file_models_proto_rawDesc = []byte{
 	0x69, 0x6c, 0x12, 0x19, 0x0a, 0x08, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x6e, 0x6f, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x4e, 0x6f, 0x12, 0x1b, 0x0a,
 	0x09, 0x64, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05,
-	0x52, 0x08, 0x64, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x49, 0x64, 0x42, 0x0b, 0x5a, 0x09, 0x2e, 0x2f,
-	0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x52, 0x08, 0x64, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x49, 0x64, 0x22, 0x3a, 0x0a, 0x09, 0x55, 0x73,
+	0x65, 0x72, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64,
+	0x12, 0x14, 0x0a, 0x05, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52,
+	0x05, 0x73, 0x63, 0x6f, 0x72, 0x65, 0x42, 0x0b, 0x5a, 0x09, 0x2e, 0x2f, 0x73, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -285,15 +345,16 @@ func file_models_proto_rawDescGZIP() []byte {
 	return file_models_proto_rawDescData
 }
 
-var file_models_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_models_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_models_proto_goTypes = []interface{}{
 	(*ProdModel)(nil),           // 0: service.ProdModel
 	(*OrderMain)(nil),           // 1: service.OrderMain
 	(*OrderDetail)(nil),         // 2: service.OrderDetail
-	(*timestamp.Timestamp)(nil), // 3: google.protobuf.Timestamp
+	(*UserScore)(nil),           // 3: service.UserScore
+	(*timestamp.Timestamp)(nil), // 4: google.protobuf.Timestamp
 }
 var file_models_proto_depIdxs = []int32{
-	3, // 0: service.OrderMain.order_time:type_name -> google.protobuf.Timestamp
+	4, // 0: service.OrderMain.order_time:type_name -> google.protobuf.Timestamp
 	2, // 1: service.OrderMain.details:type_name -> service.OrderDetail
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
@@ -344,6 +405,18 @@ func file_models_proto_init() {
 				return nil
 			}
 		}
+		file_models_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UserScore); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -351,7 +424,7 @@ func file_models_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_models_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

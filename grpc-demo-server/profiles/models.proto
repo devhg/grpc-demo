@@ -28,3 +28,9 @@ message OrderDetail {
   string order_no = 1; // 订单号
   int32 detail_id = 2; // 子订单id
 }
+
+//用户积分
+message UserScore {
+  int32 user_id = 1;
+  int32 score = 2;
+}

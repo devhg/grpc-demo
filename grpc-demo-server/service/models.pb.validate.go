@@ -276,3 +276,71 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = OrderDetailValidationError{}
+
+// Validate checks the field values on UserScore with the rules defined in the
+// proto definition for this message. If any rules are violated, an error is returned.
+func (m *UserScore) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for UserId
+
+	// no validation rules for Score
+
+	return nil
+}
+
+// UserScoreValidationError is the validation error returned by
+// UserScore.Validate if the designated constraints aren't met.
+type UserScoreValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UserScoreValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UserScoreValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UserScoreValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UserScoreValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UserScoreValidationError) ErrorName() string { return "UserScoreValidationError" }
+
+// Error satisfies the builtin error interface
+func (e UserScoreValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUserScore.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UserScoreValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UserScoreValidationError{}
