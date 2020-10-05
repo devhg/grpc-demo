@@ -18,4 +18,6 @@ service UserScoreService {
   rpc GetUserScoreByServerStream(UserScoreRequest) returns (stream UserScoreResponse) {}
   //客户端流模式
   rpc GetUserScoreByClientStream(stream UserScoreRequest) returns (UserScoreResponse) {}
+  //双向流模式
+  rpc GetUserScoreByStream(stream UserScoreRequest) returns (stream UserScoreResponse) {}
 }
