@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"github.com/QXQZX/grpc-demo/grpc-demo-client/service"
 	"github.com/golang/protobuf/ptypes/timestamp"
-	"io"
 	"time"
 
 	"google.golang.org/grpc"
@@ -75,27 +74,55 @@ func main() {
 	fmt.Println(prodInfo)
 	fmt.Println(order)
 
+	/*
+		// 从服务流模式接收
+		userScoreClient := service.NewUserScoreServiceClient(conn)
+		req := service.UserScoreRequest{}
+		req.Users = make([]*service.UserScore, 0)
+		for i := 1; i < 6; i++ {
+			req.Users = append(req.Users, &service.UserScore{UserId: int32(i)})
+		}
+		stream, err := userScoreClient.GetUserScoreByServerStream(context.Background(), &req)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		for {
+			res, err := stream.Recv()
+			if err == io.EOF {
+				break
+			}
+			if err != nil {
+				log.Fatal(err)
+			}
+			fmt.Println(res.Users)
+		}
+	*/
+
+	// 向服务端流模式发送
 	userScoreClient := service.NewUserScoreServiceClient(conn)
-	req := service.UserScoreRequest{}
-	req.Users = make([]*service.UserScore, 0)
-	for i := 1; i < 6; i++ {
-		req.Users = append(req.Users, &service.UserScore{UserId: int32(i)})
-	}
-	stream, err := userScoreClient.GetUserScore(context.Background(), &req)
+	stream, err := userScoreClient.GetUserScoreByClientStream(context.Background())
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	for {
-		res, err := stream.Recv()
-		if err == io.EOF {
-			break
+	for j := 0; j < 3; j++ {
+		req := service.UserScoreRequest{}
+		req.Users = make([]*service.UserScore, 0)
+
+		// 这里好比客户端一个比较耗时的过程
+		for i := 1; i < 6; i++ {
+			req.Users = append(req.Users, &service.UserScore{UserId: int32(i)})
 		}
+		err := stream.Send(&req)
 		if err != nil {
-			log.Fatal(err)
+			log.Println(err)
 		}
-		fmt.Println(res.Users)
 	}
+
+	recv, _ := stream.CloseAndRecv()
+	fmt.Println(recv.Users)
 
 }

@@ -136,14 +136,20 @@ var file_user_proto_rawDesc = []byte{
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x28, 0x0a, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x18,
 	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
 	0x55, 0x73, 0x65, 0x72, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73,
-	0x32, 0x5d, 0x0a, 0x10, 0x55, 0x73, 0x65, 0x72, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x53, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x12, 0x49, 0x0a, 0x0c, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x53,
-	0x63, 0x6f, 0x72, 0x65, 0x12, 0x19, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x55,
-	0x73, 0x65, 0x72, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x1a, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x53, 0x63,
-	0x6f, 0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x42,
-	0x0b, 0x5a, 0x09, 0x2e, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x32, 0xc4, 0x01, 0x0a, 0x10, 0x55, 0x73, 0x65, 0x72, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x53, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x57, 0x0a, 0x1a, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72,
+	0x53, 0x63, 0x6f, 0x72, 0x65, 0x42, 0x79, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x72,
+	0x65, 0x61, 0x6d, 0x12, 0x19, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x55, 0x73,
+	0x65, 0x72, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a,
+	0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x53, 0x63, 0x6f,
+	0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x12, 0x57,
+	0x0a, 0x1a, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x42, 0x79,
+	0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x12, 0x19, 0x2e, 0x73,
+	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x53, 0x63, 0x6f, 0x72, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x53, 0x63, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0x00, 0x28, 0x01, 0x42, 0x0b, 0x5a, 0x09, 0x2e, 0x2f, 0x73, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -167,10 +173,12 @@ var file_user_proto_goTypes = []interface{}{
 var file_user_proto_depIdxs = []int32{
 	2, // 0: service.UserScoreResponse.users:type_name -> service.UserScore
 	2, // 1: service.UserScoreRequest.users:type_name -> service.UserScore
-	1, // 2: service.UserScoreService.GetUserScore:input_type -> service.UserScoreRequest
-	0, // 3: service.UserScoreService.GetUserScore:output_type -> service.UserScoreResponse
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
+	1, // 2: service.UserScoreService.GetUserScoreByServerStream:input_type -> service.UserScoreRequest
+	1, // 3: service.UserScoreService.GetUserScoreByClientStream:input_type -> service.UserScoreRequest
+	0, // 4: service.UserScoreService.GetUserScoreByServerStream:output_type -> service.UserScoreResponse
+	0, // 5: service.UserScoreService.GetUserScoreByClientStream:output_type -> service.UserScoreResponse
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name
@@ -240,7 +248,10 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type UserScoreServiceClient interface {
-	GetUserScore(ctx context.Context, in *UserScoreRequest, opts ...grpc.CallOption) (UserScoreService_GetUserScoreClient, error)
+	//服务端流模式
+	GetUserScoreByServerStream(ctx context.Context, in *UserScoreRequest, opts ...grpc.CallOption) (UserScoreService_GetUserScoreByServerStreamClient, error)
+	//客户端流模式
+	GetUserScoreByClientStream(ctx context.Context, opts ...grpc.CallOption) (UserScoreService_GetUserScoreByClientStreamClient, error)
 }
 
 type userScoreServiceClient struct {
@@ -251,12 +262,12 @@ func NewUserScoreServiceClient(cc grpc.ClientConnInterface) UserScoreServiceClie
 	return &userScoreServiceClient{cc}
 }
 
-func (c *userScoreServiceClient) GetUserScore(ctx context.Context, in *UserScoreRequest, opts ...grpc.CallOption) (UserScoreService_GetUserScoreClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_UserScoreService_serviceDesc.Streams[0], "/service.UserScoreService/GetUserScore", opts...)
+func (c *userScoreServiceClient) GetUserScoreByServerStream(ctx context.Context, in *UserScoreRequest, opts ...grpc.CallOption) (UserScoreService_GetUserScoreByServerStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_UserScoreService_serviceDesc.Streams[0], "/service.UserScoreService/GetUserScoreByServerStream", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &userScoreServiceGetUserScoreClient{stream}
+	x := &userScoreServiceGetUserScoreByServerStreamClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -266,16 +277,50 @@ func (c *userScoreServiceClient) GetUserScore(ctx context.Context, in *UserScore
 	return x, nil
 }
 
-type UserScoreService_GetUserScoreClient interface {
+type UserScoreService_GetUserScoreByServerStreamClient interface {
 	Recv() (*UserScoreResponse, error)
 	grpc.ClientStream
 }
 
-type userScoreServiceGetUserScoreClient struct {
+type userScoreServiceGetUserScoreByServerStreamClient struct {
 	grpc.ClientStream
 }
 
-func (x *userScoreServiceGetUserScoreClient) Recv() (*UserScoreResponse, error) {
+func (x *userScoreServiceGetUserScoreByServerStreamClient) Recv() (*UserScoreResponse, error) {
+	m := new(UserScoreResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *userScoreServiceClient) GetUserScoreByClientStream(ctx context.Context, opts ...grpc.CallOption) (UserScoreService_GetUserScoreByClientStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_UserScoreService_serviceDesc.Streams[1], "/service.UserScoreService/GetUserScoreByClientStream", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &userScoreServiceGetUserScoreByClientStreamClient{stream}
+	return x, nil
+}
+
+type UserScoreService_GetUserScoreByClientStreamClient interface {
+	Send(*UserScoreRequest) error
+	CloseAndRecv() (*UserScoreResponse, error)
+	grpc.ClientStream
+}
+
+type userScoreServiceGetUserScoreByClientStreamClient struct {
+	grpc.ClientStream
+}
+
+func (x *userScoreServiceGetUserScoreByClientStreamClient) Send(m *UserScoreRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *userScoreServiceGetUserScoreByClientStreamClient) CloseAndRecv() (*UserScoreResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
 	m := new(UserScoreResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -285,40 +330,72 @@ func (x *userScoreServiceGetUserScoreClient) Recv() (*UserScoreResponse, error) 
 
 // UserScoreServiceServer is the server API for UserScoreService service.
 type UserScoreServiceServer interface {
-	GetUserScore(*UserScoreRequest, UserScoreService_GetUserScoreServer) error
+	//服务端流模式
+	GetUserScoreByServerStream(*UserScoreRequest, UserScoreService_GetUserScoreByServerStreamServer) error
+	//客户端流模式
+	GetUserScoreByClientStream(UserScoreService_GetUserScoreByClientStreamServer) error
 }
 
 // UnimplementedUserScoreServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedUserScoreServiceServer struct {
 }
 
-func (*UnimplementedUserScoreServiceServer) GetUserScore(*UserScoreRequest, UserScoreService_GetUserScoreServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetUserScore not implemented")
+func (*UnimplementedUserScoreServiceServer) GetUserScoreByServerStream(*UserScoreRequest, UserScoreService_GetUserScoreByServerStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetUserScoreByServerStream not implemented")
+}
+func (*UnimplementedUserScoreServiceServer) GetUserScoreByClientStream(UserScoreService_GetUserScoreByClientStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetUserScoreByClientStream not implemented")
 }
 
 func RegisterUserScoreServiceServer(s *grpc.Server, srv UserScoreServiceServer) {
 	s.RegisterService(&_UserScoreService_serviceDesc, srv)
 }
 
-func _UserScoreService_GetUserScore_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _UserScoreService_GetUserScoreByServerStream_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(UserScoreRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(UserScoreServiceServer).GetUserScore(m, &userScoreServiceGetUserScoreServer{stream})
+	return srv.(UserScoreServiceServer).GetUserScoreByServerStream(m, &userScoreServiceGetUserScoreByServerStreamServer{stream})
 }
 
-type UserScoreService_GetUserScoreServer interface {
+type UserScoreService_GetUserScoreByServerStreamServer interface {
 	Send(*UserScoreResponse) error
 	grpc.ServerStream
 }
 
-type userScoreServiceGetUserScoreServer struct {
+type userScoreServiceGetUserScoreByServerStreamServer struct {
 	grpc.ServerStream
 }
 
-func (x *userScoreServiceGetUserScoreServer) Send(m *UserScoreResponse) error {
+func (x *userScoreServiceGetUserScoreByServerStreamServer) Send(m *UserScoreResponse) error {
 	return x.ServerStream.SendMsg(m)
+}
+
+func _UserScoreService_GetUserScoreByClientStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(UserScoreServiceServer).GetUserScoreByClientStream(&userScoreServiceGetUserScoreByClientStreamServer{stream})
+}
+
+type UserScoreService_GetUserScoreByClientStreamServer interface {
+	SendAndClose(*UserScoreResponse) error
+	Recv() (*UserScoreRequest, error)
+	grpc.ServerStream
+}
+
+type userScoreServiceGetUserScoreByClientStreamServer struct {
+	grpc.ServerStream
+}
+
+func (x *userScoreServiceGetUserScoreByClientStreamServer) SendAndClose(m *UserScoreResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *userScoreServiceGetUserScoreByClientStreamServer) Recv() (*UserScoreRequest, error) {
+	m := new(UserScoreRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 var _UserScoreService_serviceDesc = grpc.ServiceDesc{
@@ -327,9 +404,14 @@ var _UserScoreService_serviceDesc = grpc.ServiceDesc{
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "GetUserScore",
-			Handler:       _UserScoreService_GetUserScore_Handler,
+			StreamName:    "GetUserScoreByServerStream",
+			Handler:       _UserScoreService_GetUserScoreByServerStream_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "GetUserScoreByClientStream",
+			Handler:       _UserScoreService_GetUserScoreByClientStream_Handler,
+			ClientStreams: true,
 		},
 	},
 	Metadata: "user.proto",

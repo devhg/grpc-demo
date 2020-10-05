@@ -1,16 +1,16 @@
 package service
 
 import (
+	"io"
 	"time"
 )
 
 type UserScoreService struct {
 }
 
-func (u UserScoreService) GetUserScore(in *UserScoreRequest,
-	stream UserScoreService_GetUserScoreServer) error {
+func (*UserScoreService) GetUserScoreByServerStream(in *UserScoreRequest,
+	stream UserScoreService_GetUserScoreByServerStreamServer) error {
 	var score int32 = 101
-
 	users := make([]*UserScore, 0)
 	for i, user := range in.Users {
 		user.Score = score
@@ -34,4 +34,27 @@ func (u UserScoreService) GetUserScore(in *UserScoreRequest,
 	}
 
 	return nil
+}
+
+func (*UserScoreService) GetUserScoreByClientStream(stream UserScoreService_GetUserScoreByClientStreamServer) error {
+	var score int32 = 101
+	users := make([]*UserScore, 0)
+
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			// 接收 并业务处理完 返回并关闭
+			return stream.SendAndClose(&UserScoreResponse{Users: users})
+		}
+		if err != nil {
+			return err
+		}
+
+		// 这里是服务端业务处理
+		for _, user := range req.Users {
+			user.Score = score
+			score++
+			users = append(users, user)
+		}
+	}
 }

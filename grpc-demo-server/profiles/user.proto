@@ -14,5 +14,8 @@ message UserScoreRequest {
 }
 
 service UserScoreService {
-  rpc GetUserScore(UserScoreRequest) returns (stream UserScoreResponse) {}
+  //服务端流模式
+  rpc GetUserScoreByServerStream(UserScoreRequest) returns (stream UserScoreResponse) {}
+  //客户端流模式
+  rpc GetUserScoreByClientStream(stream UserScoreRequest) returns (UserScoreResponse) {}
 }
