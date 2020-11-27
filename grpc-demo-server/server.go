@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/QXQZX/grpc-demo/grpc-demo-server/helper"
-	"github.com/QXQZX/grpc-demo/grpc-demo-server/service"
+	"github.com/devhg/grpc-demo/grpc-demo-server/helper"
+	"github.com/devhg/grpc-demo/grpc-demo-server/service"
 	"google.golang.org/grpc"
 	"net"
 )

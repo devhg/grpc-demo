@@ -1,4 +1,4 @@
-module github.com/QXQZX/grpc-demo/grpc-demo-client
+module github.com/devhg/grpc-demo/grpc-demo-client
 
 go 1.13
 

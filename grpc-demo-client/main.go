@@ -5,7 +5,7 @@ import (
 	"crypto/tls"
 	"crypto/x509"
 	"fmt"
-	"github.com/QXQZX/grpc-demo/grpc-demo-client/service"
+	"github.com/devhg/grpc-demo/grpc-demo-client/service"
 	"github.com/golang/protobuf/ptypes/timestamp"
 	"io"
 	"time"

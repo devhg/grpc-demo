@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	"github.com/QXQZX/grpc-demo/grpc-demo-server/helper"
-	"github.com/QXQZX/grpc-demo/grpc-demo-server/service"
+	"github.com/devhg/grpc-demo/grpc-demo-server/helper"
+	"github.com/devhg/grpc-demo/grpc-demo-server/service"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"google.golang.org/grpc"
 	"log"
