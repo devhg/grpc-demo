@@ -1,12 +1,14 @@
 syntax = "proto3";
 
-option go_package = "./service";
 package service;
+
+option go_package = "./service;service";
+
 
 //https://github.com/jvolkman/intellij-protobuf-editor/issues/13#issuecomment-626325662
 //解决引入问题
 import "google/api/annotations.proto";
-import "models.proto";
+import "service/models.proto";
 
 // 枚举类型
 enum ProdAreas {

@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-option go_package = "./service";
 package service;
+option go_package = "./service;service";
 
-import "models.proto";
+import "service/models.proto";
 
 message UserScoreResponse {
   repeated UserScore users = 1;
