@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"time"
@@ -12,7 +13,8 @@ type UserScoreService struct {
 func (*UserScoreService) GetUserScoreByServerStream(in *UserScoreRequest,
 	stream UserScoreService_GetUserScoreByServerStreamServer) error {
 	var score int32 = 101
-	users := make([]*UserScore, 0)
+	var users []*UserScore
+
 	for i, user := range in.Users {
 		user.Score = score
 		score++
@@ -23,7 +25,7 @@ func (*UserScoreService) GetUserScoreByServerStream(in *UserScoreRequest,
 			if err != nil {
 				return err
 			}
-			users = (users)[0:0]
+			users = []*UserScore{}
 			time.Sleep(2 * time.Second)
 		}
 	}
@@ -33,7 +35,6 @@ func (*UserScoreService) GetUserScoreByServerStream(in *UserScoreRequest,
 			return err
 		}
 	}
-
 	return nil
 }
 
@@ -52,17 +53,19 @@ func (*UserScoreService) GetUserScoreByClientStream(stream UserScoreService_GetU
 		}
 
 		// 这里是服务端业务处理
+		fmt.Printf("from %d to ", len(users))
 		for _, user := range req.Users {
 			user.Score = score
 			score++
 			users = append(users, user)
 		}
+		fmt.Println(len(users))
 	}
 }
 
 func (s *UserScoreService) GetUserScoreByStream(stream UserScoreService_GetUserScoreByStreamServer) error {
 	var score int32 = 101
-	users := make([]*UserScore, 0)
+	var users []*UserScore
 
 	for {
 		req, err := stream.Recv()
@@ -80,14 +83,14 @@ func (s *UserScoreService) GetUserScoreByStream(stream UserScoreService_GetUserS
 			score++
 			users = append(users, user)
 		}
+		fmt.Println(users)
 
 		err = stream.Send(&UserScoreResponse{Users: users})
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		users = (users)[0:0]
-
+		users = []*UserScore{}
 		time.Sleep(2 * time.Second)
 	}
 }

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package service;
+
+//option go_package = "{out_path};out_go_package";
+option go_package = "./service;service";
+
+import "google/api/annotations.proto";
+import "service/models.proto";
+
+message OrderResponse {
+  string status = 1;
+  string message = 2;
+}
+
+message OrderRequest {
+  OrderMain order_main = 1;
+}
+
+service OrderService {
+  rpc NewOrder(OrderRequest) returns (OrderResponse) {
+    option (google.api.http) = {
+      post : "/v1/orders",
+      body : "order_main"
+    };
+  }
+}

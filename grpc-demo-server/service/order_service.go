@@ -13,6 +13,7 @@ func (o OrderService) NewOrder(ctx context.Context, or *OrderRequest) (*OrderRes
 	if err != nil {
 		return &OrderResponse{Status: "error", Message: err.Error()}, nil
 	}
+
 	fmt.Println(or.OrderMain)
 	fmt.Println(or.OrderMain.Details)
 	ret := &OrderResponse{Status: "200", Message: "ok!"}

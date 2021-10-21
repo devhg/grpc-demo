@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package service;
+option go_package = "./service;service";
+
+import "service/models.proto";
+
+message UserScoreResponse {
+  repeated UserScore users = 1;
+}
+
+message UserScoreRequest {
+  repeated UserScore users = 1;
+}
+
+service UserScoreService {
+  //服务端流模式
+  rpc GetUserScoreByServerStream(UserScoreRequest) returns (stream UserScoreResponse) {}
+  //客户端流模式
+  rpc GetUserScoreByClientStream(stream UserScoreRequest) returns (UserScoreResponse) {}
+  //双向流模式
+  rpc GetUserScoreByStream(stream UserScoreRequest) returns (stream UserScoreResponse) {}
+}

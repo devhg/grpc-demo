@@ -1,30 +1,31 @@
 package main
 
 import (
+	"fmt"
 	"net"
-	
+
 	"google.golang.org/grpc"
-	
+
 	"github.com/devhg/grpc-demo/grpc-demo-server/helper"
 	"github.com/devhg/grpc-demo/grpc-demo-server/service"
 )
 
 func main() {
-	
 	rpcServer := grpc.NewServer(grpc.Creds(helper.GetServerCreds()))
-	
+
 	service.RegisterProdServiceServer(rpcServer, new(service.ProdService))           // 商品服务
 	service.RegisterOrderServiceServer(rpcServer, new(service.OrderService))         // 订单服务
 	service.RegisterUserScoreServiceServer(rpcServer, new(service.UserScoreService)) // 积分服务
-	
+
 	// 使用tcp
 	listen, _ := net.Listen("tcp", ":9305")
-	
+
+	fmt.Println("grpc server run at: ", ":9305")
 	err := rpcServer.Serve(listen)
 	if err != nil {
 		panic(err)
 	}
-	
+
 	// 使用http
 	//
 	// server := &http.Server{

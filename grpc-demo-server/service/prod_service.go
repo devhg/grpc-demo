@@ -10,13 +10,12 @@ func (p *ProdService) GetProdInfo(ctx context.Context, req *ProdRequest) (*ProdM
 	return ret, nil
 }
 
-func (p *ProdService) GetProdStocks(context.Context, *QuerySize) (*ProdResponseList, error) {
-	prods := []*ProdResponse{
-		&ProdResponse{ProdStock: 31},
-		&ProdResponse{ProdStock: 32},
-		&ProdResponse{ProdStock: 33},
-		&ProdResponse{ProdStock: 34},
+func (p *ProdService) GetProdStocks(ctx context.Context, size *QuerySize) (*ProdResponseList, error) {
+	var prods []*ProdResponse
+	for i := 1; i <= int(size.Size); i++ {
+		prods = append(prods, &ProdResponse{ProdStock: int32(30 + i)})
 	}
+
 	return &ProdResponseList{Prods: prods}, nil
 }
 
