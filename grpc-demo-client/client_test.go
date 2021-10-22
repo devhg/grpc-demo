@@ -3,14 +3,16 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/devhg/grpc-demo/grpc-demo-client/helper"
-	"github.com/devhg/grpc-demo/grpc-demo-client/service"
-	"github.com/golang/protobuf/ptypes/timestamp"
-	"google.golang.org/grpc"
 	"io"
 	"log"
 	"testing"
 	"time"
+
+	"github.com/golang/protobuf/ptypes/timestamp"
+	"google.golang.org/grpc"
+
+	"github.com/devhg/grpc-demo/grpc-demo-client/helper"
+	"github.com/devhg/grpc-demo/grpc-demo-client/service"
 )
 
 // 商品服务
@@ -189,5 +191,64 @@ func TestGetUserScoreByStream(t *testing.T) {
 			log.Println(err)
 		}
 		fmt.Println(resp.Users)
+	}
+}
+
+// ////////////////////////////////////////////////////////////////////////////
+// 自定义认证的订单服务，影响TestOrderService
+type Auth struct {
+	AppKey    string
+	AppSecret string
+}
+
+func (a *Auth) GetRequestMetadata(ctx context.Context, uri ...string) (map[string]string, error) {
+	return map[string]string{"app_key": a.AppKey, "app_secret": a.AppSecret}, nil
+}
+
+func (a *Auth) RequireTransportSecurity() bool { return true }
+
+func dial(auth *Auth) (*service.OrderResponse, error) {
+	conn, err := grpc.Dial(":9305",
+		grpc.WithTransportCredentials(helper.GetClientCreds()),
+		grpc.WithPerRPCCredentials(auth))
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer conn.Close()
+
+	// 订单服务
+	orderClient := service.NewOrderServiceClient(conn)
+
+	orderResp, err := orderClient.NewOrder(
+		context.Background(),
+		&service.OrderRequest{OrderMain: &service.OrderMain{
+			OrderId:    11,
+			OrderNo:    "20201003",
+			OrderMoney: 111,
+			UserId:     233,
+			OrderTime:  &timestamp.Timestamp{Seconds: time.Now().Unix()},
+			Details: []*service.OrderDetail{
+				{OrderNo: "10001", DetailId: 101},
+				{OrderNo: "10002", DetailId: 102},
+			},
+		}},
+	)
+	return orderResp, err
+}
+
+func TestOrderServiceByCustomAuth(t *testing.T) {
+	auth1 := Auth{AppKey: "devhg", AppSecret: "err"}
+	auth2 := Auth{AppKey: "devhg", AppSecret: "20211022"}
+
+	// not correct Auth
+	if _, err := dial(&auth1); err == nil {
+		t.Fatal(err)
+	}
+
+	// correct Auth
+	if resp, err := dial(&auth2); err != nil {
+		t.Fatal(err)
+	} else {
+		t.Log(resp)
 	}
 }
