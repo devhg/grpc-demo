@@ -10,6 +10,8 @@ import (
 
 	"github.com/golang/protobuf/ptypes/timestamp"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 
 	"github.com/devhg/grpc-demo/grpc-demo-client/helper"
 	"github.com/devhg/grpc-demo/grpc-demo-client/service"
@@ -251,4 +253,59 @@ func TestOrderServiceByCustomAuth(t *testing.T) {
 	} else {
 		t.Log(resp)
 	}
+}
+
+func TestOrderServiceGetOrderInfo(t *testing.T) {
+	t.Run("timeout", func(t *testing.T) {
+		_, err := deadlineT(1 * time.Second) // too short, less than 3*time.Second
+
+		if err == nil {
+			log.Fatal("want deadline error")
+		}
+
+		statusErr, ok := status.FromError(err)
+		if ok {
+			if statusErr.Code() != codes.DeadlineExceeded {
+				log.Fatalln("client err not equal deadline")
+			} else {
+				// success
+				log.Println(statusErr, err)
+			}
+		} else {
+			log.Fatal(err)
+		}
+	})
+
+	t.Run("not timeout", func(t *testing.T) {
+		resp, err := deadlineT(10 * time.Second) // not timeout, more than 3*time.Second
+		if err != nil {
+			statusErr, ok := status.FromError(err)
+			if ok {
+				if statusErr.Code() == codes.DeadlineExceeded {
+					log.Fatalln("client.GetOrderInfo err: deadline")
+				}
+			}
+			log.Fatalf("client.GetOrderInfo err: %v", err)
+		}
+		log.Println(resp)
+	})
+}
+
+func deadlineT(timeout time.Duration) (*service.OrderMain, error) {
+	// ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(time.Duration(5 * time.Second)))
+	ctx, cancel := context.WithTimeout(context.Background(), timeout)
+	defer cancel()
+
+	conn, err := grpc.Dial(":9305", grpc.WithTransportCredentials(helper.GetClientCreds()))
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer conn.Close()
+
+	client := service.NewOrderServiceClient(conn)
+	resp, err := client.GetOrderInfo(ctx, &service.OrderRequest{
+		OrderId: 233,
+	})
+
+	return resp, err
 }

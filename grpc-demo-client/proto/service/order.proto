@@ -14,7 +14,8 @@ message OrderResponse {
 }
 
 message OrderRequest {
-  OrderMain order_main = 1;
+  int32 order_id = 1; // 订单id 数字自增
+  OrderMain order_main = 2;
 }
 
 service OrderService {
@@ -22,6 +23,12 @@ service OrderService {
     option (google.api.http) = {
       post : "/v1/orders",
       body : "order_main"
+    };
+  }
+
+  rpc GetOrderInfo(OrderRequest) returns (OrderMain) {
+    option (google.api.http) = {
+      get : "/v1/orderInfo/{order_id}",
     };
   }
 }

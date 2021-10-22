@@ -1,6 +1,7 @@
 # 自签CA证书、server、client双向认证
 
 > https://segmentfault.com/a/1190000016601810
+> 
 > https://www.cnblogs.com/devhg/p/13751770.html
 
 ## CA
@@ -39,7 +40,7 @@ OpenSSL>
 
 ## Server
 
-创建server.key，生成 CSR CSR 是 Cerificate Signing Request 的英文缩写，为证书请求文件。主要作用是 CA 会利用 CSR 文件进行签名使得攻击者无法伪装或篡改原有证书
+创建server.key，生成 CSR。 CSR 是 Cerificate Signing Request 的英文缩写，为证书请求文件。主要作用是 CA 会利用 CSR 文件进行签名使得攻击者无法伪装或篡改原有证书
 
 ```shell
 OpenSSL> genrsa -out server.key 2048
@@ -161,4 +162,4 @@ x509 -req -days 3650 -in server.csr -signkey server_no_password.key -out server.
 openssl 生成证书上 grpc 报 legacy Common Name field, use SANs or temporarily enable Common Name matching with GODEBUG=x509ignoreCN=0
 最近用传统的方式 生成的证书上用golang 1.15. 版本 报 grpc 上面
 
-[fix go1.15 bug](./go1.15+bug.md)
+[fix go1.15 bug](./README.md)

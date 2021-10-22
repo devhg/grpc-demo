@@ -229,7 +229,7 @@ type ProdResponseList struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	//repeated是一个修饰符，返回字段可以重复很多很多次包括0次，可以看做一个切片|数组
+	// repeated是一个修饰符，返回字段可以重复很多很多次包括0次，可以看做一个切片|数组
 	Prods []*ProdResponse `protobuf:"bytes,1,rep,name=prods,proto3" json:"prods,omitempty"`
 }
 
