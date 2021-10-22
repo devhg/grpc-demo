@@ -4,14 +4,23 @@ import (
 	"fmt"
 	"net"
 
-	"google.golang.org/grpc"
-
 	"github.com/devhg/grpc-demo/grpc-demo-server/helper"
+	"github.com/devhg/grpc-demo/grpc-demo-server/intercepter"
 	"github.com/devhg/grpc-demo/grpc-demo-server/service"
+
+	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
+	"google.golang.org/grpc"
 )
 
 func main() {
-	rpcServer := grpc.NewServer(grpc.Creds(helper.GetServerCreds()))
+	opts := []grpc.ServerOption{
+		grpc.Creds(helper.GetServerCreds()),
+		grpc_middleware.WithUnaryServerChain(
+			intercepter.RecoveryInterceptor,
+			intercepter.LoggingInterceptor,
+		),
+	}
+	rpcServer := grpc.NewServer(opts...)
 
 	service.RegisterProdServiceServer(rpcServer, new(service.ProdService))           // 商品服务
 	service.RegisterOrderServiceServer(rpcServer, new(service.OrderService))         // 订单服务

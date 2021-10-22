@@ -28,5 +28,6 @@ func (p *ProdService) GetProdService(ctx context.Context, req *ProdRequest) (*Pr
 	} else if req.ProdArea == ProdAreas_C {
 		stock = 33
 	}
+	panic(213)
 	return &ProdResponse{ProdStock: int32(stock)}, nil
 }
