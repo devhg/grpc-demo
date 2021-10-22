@@ -19,3 +19,6 @@ run http-server proxy by grpc-gateway
 run client
 `go run client.go`
 `go test client_test.go`
+
+## 参考
+https://github.com/EDDYCJY/go-grpc-example
